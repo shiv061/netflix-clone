@@ -28,14 +28,13 @@ export function BrowseContainer({ slides }) {
   }, [slides, category]);
 
   useEffect(() => {
-    const fuse = new Fuse(slideRows, { keys: ['data.description', 'data.title', 'data.genre'] });
-    const results = fuse.search(searchTerm).map(({ item }) => item);
-
-    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
-      setSlideRows(results);
-    } else {
-      setSlideRows(slides[category]);
-    }
+    const results = [];
+    // console.log(slideRows);
+    // if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+    //   setSlideRows(results);
+    // } else {
+    //   setSlideRows(slides[category]);
+    // }
   }, [searchTerm, category, slideRows, slides]);
 
   return profile.displayName ? (
@@ -54,7 +53,7 @@ export function BrowseContainer({ slides }) {
             </Header.TextLink>
           </Header.Group>
           <Header.Group>
-            <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <Header.Search />
             <Header.Profile>
               <Header.Picture src={user.photoURL} />
               <Header.Dropdown>
